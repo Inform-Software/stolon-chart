@@ -40,8 +40,8 @@ etcd:
   # managed: true
   persistence:
     enabled: true
-    classVersion: beta
-    class: slow
+    classVersion: alpha
+    class: default
 
 
 pgReplUsername: "repluser"
