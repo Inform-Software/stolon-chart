@@ -1,5 +1,13 @@
 # Helm chart to install Stolon (HA PostgreSQL cluster)
 
+## About this fork
+
+:exclamation: I am trying to use the stolon chart on minikube, and this fork is about documenting my experiments. So, this is **work in progress** !
+
+The following sections show the original README.md
+
+## Introduction
+
 > Stolon is a cloud native PostgreSQL manager for PostgreSQL high availability.
 > It's cloud native because it'll let you keep an high available PostgreSQL inside your containers
 > (kubernetes integration) but also on every other kind of infrastructure
