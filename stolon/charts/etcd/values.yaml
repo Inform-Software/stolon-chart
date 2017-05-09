@@ -4,10 +4,10 @@
 # name: value
 
 Name: etcd
-Replicas: 3
+Replicas: 1
 
 Image: "gcr.io/google_containers/etcd-amd64"
-ImageTag: "3.0.14"
+ImageTag: "3.0.17"
 ImagePullPolicy: "Always"
 
 PeerPort: 2380
@@ -31,7 +31,7 @@ resources:
 persistence:
   ## Enable persistence using Persistent Volume Claims.
   ##
-  enabled: false
+  enabled: true
 
   classVersion: alpha
   ## Persistent Volume Storage Class.
