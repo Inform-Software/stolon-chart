@@ -47,6 +47,7 @@ etcd:
 pgReplUsername: "repluser"
 pgReplPassword: "replPassword"
 pgSuperuserName: "stolon"
+pgSuperuserPasword: "stolon"
 
 ## set password for the superuser
 ## default is 15 random chars
@@ -102,14 +103,15 @@ keeper:
 persistence:
   ## Enable persistence using Persistent Volume Claims.
   ##
-  enabled: false
+  enabled: true
 
   ## Persistent Volume Storage Class Version.
   ##
-  classVersion: beta
+  classVersion: alpha
+  
   ## Persistent Volume Storage Class.
   ##
-  class: slow
+  class: anything
 
   ## Persistent Volume Access Mode.
   ##
