@@ -77,8 +77,11 @@ spec:
 
             # store member id into PVC for later member replacement
             collect_member() {
+                echo "collecting members ..."
                 while ! etcdctl member list &>/dev/null; do sleep 1; done
                 etcdctl member list | grep http://${HOSTNAME}.${PETSET_NAME}:2380 | cut -d':' -f1 | cut -d'[' -f1 > /var/run/etcd/member_id
+                echo "member_id: "
+                cat /var/run/etcd/member_id
                 exit 0
             }
 
@@ -91,6 +94,7 @@ spec:
             }
 
             member_hash() {
+                echo "calculating member hash."
                 etcdctl member list | grep http://${HOSTNAME}.${PETSET_NAME}:2380 | cut -d':' -f1 | cut -d'[' -f1
             }
 
@@ -98,9 +102,11 @@ spec:
             if [ -e /var/run/etcd/default.etcd ]; then
                 echo "Re-joining etcd member"
                 member_id=$(cat /var/run/etcd/member_id)
-
+                echo "member id: ${member_id}"
+                
                 # re-join member
                 ETCDCTL_ENDPOINT=$(eps) etcdctl member update ${member_id} http://${HOSTNAME}.${PETSET_NAME}:2380
+                echo "Starting etcd"
                 exec etcd --name ${HOSTNAME} \
                     --listen-peer-urls http://${HOSTNAME}.${PETSET_NAME}:2380 \
                     --listen-client-urls http://${HOSTNAME}.${PETSET_NAME}:2379,http://127.0.0.1:2379 \
@@ -138,6 +144,7 @@ spec:
 
                 collect_member &
 
+                echo "Starting etcd. with HOSTNAME: ${HOSTNAME}, PETSET_NAME: ${PETSET_NAME}"
                 exec etcd --name ${HOSTNAME} \
                     --listen-peer-urls http://${HOSTNAME}.${PETSET_NAME}:2380 \
                     --listen-client-urls http://${HOSTNAME}.${PETSET_NAME}:2379,http://127.0.0.1:2379 \
@@ -164,6 +171,7 @@ spec:
             collect_member &
 
             # join member
+            echo "Starting etcd. with HOSTNAME: ${HOSTNAME}, PETSET_NAME: ${PETSET_NAME}"
             exec etcd --name ${HOSTNAME} \
                 --initial-advertise-peer-urls http://${HOSTNAME}.${PETSET_NAME}:2380 \
                 --listen-peer-urls http://${HOSTNAME}.${PETSET_NAME}:2380 \
