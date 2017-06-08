@@ -4,7 +4,7 @@
 # name: value
 
 Name: etcd
-Replicas: 1
+Replicas: 3
 
 Image: "gcr.io/google_containers/etcd-amd64"
 ImageTag: "3.0.17"
