@@ -8,7 +8,7 @@ Replicas: 3
 
 Image: "gcr.io/google_containers/etcd-amd64"
 ImageTag: "3.0.17"
-ImagePullPolicy: "Always"
+ImagePullPolicy: "IfNotPresent"
 
 PeerPort: 2380
 ClientPort: 2379

@@ -19,7 +19,7 @@ imageTag: "v0.5.0-pg9.6"
 ## Specify a imagePullPolicy: 'Always' if imageTag is 'latest', else set to 'IfNotPresent'.
 ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
 ##
-# imagePullPolicy:
+imagePullPolicy: "IfNotPresent"
 
 ## Configuration values for Stolon.
 
